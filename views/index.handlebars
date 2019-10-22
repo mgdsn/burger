@@ -1,0 +1,42 @@
+      <div class="container maincontent">
+          <div class="row">
+            <div class="col-sm-12">
+            <h1>Eat Some Burgers</h1>
+            </div>
+          </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <img src="/assets/images/burger.jpg" alt="Sea Creatures">
+                <h3>Add a Burger</h3>
+                    <form method="POST" action="/burgers/add">
+                      <input type="text" name="burgeradd" value=""><br>
+                    <input type="submit" value="Submit" class="btn btn-dark">
+                    </form>
+             </div>
+             <div class="col-sm-6">
+             <h1>Available for eating</h1>
+              <ul>
+                {{#each bdata}}
+                  {{#unless this.devoured}}
+                <div>{{this.id}} {{this.burger_name}}</div>
+                <form method="POST" action="/burgers/update/{{this.id}}">
+              <button class="btn btn-dark">Eat</button></form>
+                  {{/unless}}
+                {{/each}}
+              </ul>  
+              <h1>Already eaten</h1>
+              <ul>
+                {{#each bdata}}
+                  {{#if this.devoured}}
+                <div>{{this.id}} {{this.burger_name}}</div>
+                  {{/if}}
+                {{/each}}
+              </ul> 
+             </div>
+          </div>
+        </div>
+        <footer class="footer fixed-bottom">
+            <div class="container text-center footertext">
+              <small>&copy; 2019 Michael Goodson</small>
+            </div>
+        </footer>
